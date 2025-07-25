@@ -1,0 +1,28 @@
+
+from flask import Flask, request, jsonify
+import cliente
+app= Flask(__name__)
+app.route('/', methods=["get"])
+def buscar_cliente():
+    data = request.get_json()
+    ci = data.get("ci")
+    if ci in cliente:
+        cilente = cliente[ci]
+        return jsonify({
+            "accion" : "success",
+             "codres" : "sin error",
+             "menres" : "ok",
+             "ci" : ci,
+             "nombre" : cliente[nombre],
+             "apellido" : cliente[apellido],
+        })
+    else:
+        return jsonify({
+            "accion" : "cliente no esta en el sistema",
+             "codres" : "error",
+             "menres" : "error de cliente",
+             "ci" : ci,
+           } )
+    if _name_=='_main_':
+        app.run(debug=true, port=5003, host='0.0.0.0')
+
